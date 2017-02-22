@@ -1,4 +1,6 @@
 # Frontend app for SEO monitor
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/patomdev/seo-monitor-front.svg)](https://greenkeeper.io/)
 TBD
 
 ## Credits
