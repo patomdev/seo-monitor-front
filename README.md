@@ -1,6 +1,9 @@
 # Frontend app for SEO monitor
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/patomdev/seo-monitor-front.svg)](https://greenkeeper.io/)
+[![Dependency Status](https://david-dm.org/patomdev/seo-monitor-front.svg)](https://david-dm.org/patomdev/seo-monitor-front)
+[![Dev Dependency Status](https://david-dm.org/patomdev/seo-monitor-front/dev-status.svg)](https://david-dm.org/patomdev/seo-monitor-front#info=devDependencies)
+[![Build Status](https://travis-ci.org/patomdev/seo-monitor-front.svg?branch=dev)](https://travis-ci.org/patomdev/seo-monitor-front)
+
 TBD
 
 ## Credits
