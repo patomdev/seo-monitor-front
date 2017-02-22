@@ -1,16 +1,16 @@
 {
-  "name": "react-boilerplate",
+  "name": "seo-monitor-front",
   "version": "3.4.0",
-  "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
+  "description": "Frontend application for SEO monitor",
   "repository": {
     "type": "git",
-    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
+    "url": "https://github.com/patomdev/seo-monitor-front"
   },
   "engines": {
     "npm": ">=3",
     "node": ">=5"
   },
-  "author": "Max Stoiber",
+  "author": "Patryk Omiotek",
   "license": "MIT",
   "scripts": {
     "analyze:clean": "rimraf stats.json",
