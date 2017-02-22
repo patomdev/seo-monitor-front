@@ -30,6 +30,11 @@ LanguageProvider.propTypes = {
 };
 
 
+LanguageProvider.defaultProps = {
+  locale: 'en',
+  messages: {},
+};
+
 const mapStateToProps = createSelector(
   makeSelectLocale(),
   (locale) => ({ locale })
