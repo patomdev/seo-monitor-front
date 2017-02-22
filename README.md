@@ -3,6 +3,7 @@
 [![Dependency Status](https://david-dm.org/patomdev/seo-monitor-front.svg)](https://david-dm.org/patomdev/seo-monitor-front)
 [![Dev Dependency Status](https://david-dm.org/patomdev/seo-monitor-front/dev-status.svg)](https://david-dm.org/patomdev/seo-monitor-front#info=devDependencies)
 [![Build Status](https://api.travis-ci.org/patomdev/seo-monitor-front.svg?branch=dev)](https://travis-ci.org/patomdev/seo-monitor-front)
+[![Coverage Status](https://coveralls.io/repos/github/patomdev/seo-monitor-front/badge.svg?branch=dev)](https://coveralls.io/github/patomdev/seo-monitor-front?branch=dev)
 
 Frontend for SEO monitoring tool
 Link to backend repo soon
