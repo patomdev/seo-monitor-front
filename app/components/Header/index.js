@@ -9,6 +9,7 @@ function Header() {
   return (
     <div>
       <NavBar>
+        <h1>SEO Monitor</h1>
         <HeaderLink to="/">
           <FormattedMessage {...messages.home} />
         </HeaderLink>
