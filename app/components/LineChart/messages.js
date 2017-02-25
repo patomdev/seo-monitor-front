@@ -1,5 +1,5 @@
 /*
- * LineCHart Messages
+ * LineChart Messages
  *
  * This contains all the text for the LineChart component.
  */
