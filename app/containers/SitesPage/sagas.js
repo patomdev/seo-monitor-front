@@ -5,21 +5,21 @@
 import { take, call, put, cancel, takeLatest } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import request from 'utils/request';
-import { LOAD_DATA } from './constants';
-import { dataLoaded, dataLoadingError } from './actions';
+import { LOAD_SITES } from './constants';
+import { sitesLoaded, sitesLoadingError } from './actions';
 
-export function* getData() {
+export function* getSites() {
   const requestURL = 'https://api.github.com/users/';
   try {
     const sites = yield call(request, requestURL);
-    yield put(dataLoaded(sites));
+    yield put(sitesLoaded(sites));
   } catch (err) {
-    yield put(dataLoadingError(err));
+    yield put(sitesLoadingError(err));
   }
 }
 
 export function* watchData() {
-  const watcher = yield takeLatest(LOAD_DATA, getData);
+  const watcher = yield takeLatest(LOAD_SITES, getSites);
 
   yield take(LOCATION_CHANGE);
   yield cancel(watcher);

@@ -22,18 +22,46 @@ export default function createRoutes(store) {
       name: 'dashboard',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
+          import('containers/DashboardPage/reducer'),
+          import('containers/DashboardPage/sagas'),
           import('containers/DashboardPage'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([component]) => {
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('dashboard', reducer.default);
+          injectSagas(sagas.default);
+
           renderRoute(component);
         });
 
         importModules.catch(errorLoading);
       },
-    }, {
+    },
+    {
+      path: '/sites',
+      name: 'sites',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/SitesPage/reducer'),
+          import('containers/SitesPage/sagas'),
+          import('containers/SitesPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('sites', reducer.default);
+          injectSagas(sagas.default);
+
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    },
+    {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
