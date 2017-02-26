@@ -15,7 +15,6 @@ import { loadSites } from './actions';
 import {
   makeSelectSites,
   makeSelectLoading,
-  makeSelectError,
 } from './selectors';
 
 export class SitesPage extends React.PureComponent {
@@ -26,18 +25,23 @@ export class SitesPage extends React.PureComponent {
   }
 
   render() {
-    const { loading, error, sites } = this.props;
+    const { loading, sites } = this.props;
     const sitesListProps = {
       loading,
-      error,
       sites,
     };
 
     return (
       <div>
-        {sitesListProps.loading}
-        {sitesListProps.error}
-        {sitesListProps.sites}
+        <div>
+          {sitesListProps.loading}
+        </div>
+        <div>
+
+        </div>
+        <div>
+          {sitesListProps.sites}
+        </div>
         <Helmet
           title="Sites"
           meta={[
@@ -55,10 +59,6 @@ export class SitesPage extends React.PureComponent {
 
 SitesPage.propTypes = {
   loading: React.PropTypes.bool,
-  error: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.bool,
-  ]),
   sites: React.PropTypes.oneOfType([
     React.PropTypes.array,
     React.PropTypes.bool,
@@ -68,14 +68,13 @@ SitesPage.propTypes = {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    initSites: dispatch(loadSites()),
+    initSites: () => dispatch(loadSites()),
   };
 }
 
 const mapStateToProps = createStructuredSelector({
   sites: makeSelectSites(),
   loading: makeSelectLoading(),
-  error: makeSelectError(),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SitesPage);
