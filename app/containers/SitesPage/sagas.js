@@ -9,7 +9,7 @@ import { LOAD_SITES } from './constants';
 import { sitesLoaded, sitesLoadingError } from './actions';
 
 export function* getSites() {
-  const requestURL = 'https://api.github.com/users/';
+  const requestURL = '/sites';
   try {
     const sites = yield call(request, requestURL);
     yield put(sitesLoaded(sites));
