@@ -12,16 +12,19 @@ import { createStructuredSelector } from 'reselect';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import { loadSites } from './actions';
-import {
-  makeSelectSites,
-  makeSelectLoading,
-} from './selectors';
+import { makeSelectSites, makeSelectLoading } from './selectors';
 
 export class SitesPage extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
 
   componentDidMount() {
     this.props.initSites();
+  }
+
+  renderSites(sites) {
+    return sites
+      ? sites.map((site, index) => <div key={index}>{site.title}</div>)
+      : null;
   }
 
   render() {
@@ -36,22 +39,17 @@ export class SitesPage extends React.PureComponent {
         <div>
           {sitesListProps.loading}
         </div>
-        <div>
-
-        </div>
-        <div>
-          {sitesListProps.sites}
-        </div>
+        <div />
         <Helmet
           title="Sites"
-          meta={[
-            { name: 'description', content: 'List of crawled pages' },
-          ]}
+          meta={[{ name: 'description', content: 'List of crawled pages' }]}
         />
         <h2>
           <FormattedMessage {...messages.header} />
         </h2>
-
+        <div>
+          {this.renderSites(sitesListProps.sites)}
+        </div>
       </div>
     );
   }

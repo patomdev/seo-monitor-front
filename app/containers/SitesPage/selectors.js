@@ -8,17 +8,17 @@ const selectSites = (state) => state.get('sites');
 
 const makeSelectLoading = () => createSelector(
   selectSites,
-  (globalState) => globalState.get('loading')
+  (sitesState) => sitesState.get('loading')
 );
 
 const makeSelectError = () => createSelector(
   selectSites,
-  (globalState) => globalState.get('error')
+  (sitesState) => sitesState.get('error')
 );
 
 const makeSelectSites = () => createSelector(
   selectSites,
-  (globalState) => globalState.getIn(['data', 'sites'])
+  (sitesState) => sitesState.getIn(['data', 'sites'])
 );
 
 export {

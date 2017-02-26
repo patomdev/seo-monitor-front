@@ -37,7 +37,7 @@ function checkStatus(response) {
  * @return {object}           The response data
  */
 export default function request(url, options) {
-  const prefixedUrl = '/api/v1'.concat(url)
+  const prefixedUrl = '/api/v1'.concat(url);
   return fetch(prefixedUrl, options)
     .then(checkStatus)
     .then(parseJSON);
