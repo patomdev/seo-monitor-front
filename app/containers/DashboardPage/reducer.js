@@ -13,36 +13,19 @@
 import { fromJS } from 'immutable';
 
 import {
-  LOAD_DATA_SUCCESS,
-  LOAD_DATA,
-  LOAD_DATA_ERROR,
+  NEW_MESSAGE,
 } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
-  loading: false,
-  error: false,
-  currentUser: false,
-  data: {
-    data: false,
-  },
+  messages: false,
 });
 
 function dashboardReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_DATA:
+    case NEW_MESSAGE:
       return state
-        .set('loading', true)
-        .set('error', false)
-        .setIn(['data', 'data'], false);
-    case LOAD_DATA_SUCCESS:
-      return state
-        .setIn(['data', 'sites'], action.sites)
-        .set('loading', false);
-    case LOAD_DATA_ERROR:
-      return state
-        .set('error', action.error)
-        .set('loading', false);
+        .set('messages', action.message);
     default:
       return state;
   }

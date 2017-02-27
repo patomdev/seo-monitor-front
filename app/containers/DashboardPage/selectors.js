@@ -6,24 +6,12 @@ import { createSelector } from 'reselect';
 
 const selectDashboard = (state) => state.get('dashboard');
 
-const makeSelectLoading = () => createSelector(
+const makeSelectMessages = () => createSelector(
   selectDashboard,
-  (globalState) => globalState.get('loading')
-);
-
-const makeSelectError = () => createSelector(
-  selectDashboard,
-  (globalState) => globalState.get('error')
-);
-
-const makeSelectSites = () => createSelector(
-  selectDashboard,
-  (globalState) => globalState.getIn(['data', 'sites'])
+  (dashboardState) => dashboardState.get('messages')
 );
 
 export {
   selectDashboard,
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectSites,
+  makeSelectMessages,
 };

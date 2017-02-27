@@ -10,20 +10,65 @@
  */
 
 import React from 'react';
+import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import { createStructuredSelector } from 'reselect';
+import Pusher from 'pusher-js';
 import LineChart from 'components/LineChart';
 import messages from './messages';
+import { makeSelectMessages } from './selectors';
+import { newMessage } from './actions';
 
-export default class DashboardPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class DashboardPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
+  componentWillMount() {
+    this.pusher = new Pusher('5ba303ce6d9a3bb318ab');
+    this.chatRoom = this.pusher.subscribe('urls');
+  }
+
+  componentDidMount() {
+    this.chatRoom.bind('new_url', (message) => {
+      this.props.newMessage(message);
+    }, this);
+  }
+
+  renderPushMessages(pushMessage) {
+    return pushMessage
+      ? <div key={pushMessage.id}>{pushMessage.crawled} <a href={pushMessage.url}>{pushMessage.url}</a></div>
+      : null;
+  }
+
   render() {
     return (
       <div>
         <h2>
           <FormattedMessage {...messages.header} />
         </h2>
+        <h2><FormattedMessage {...messages.pusherHeader} /></h2>
+        {this.renderPushMessages(this.props.messages)}
         <LineChart />
       </div>
 
     );
   }
 }
+
+DashboardPage.propTypes = {
+  messages: React.PropTypes.oneOfType([
+    React.PropTypes.object,
+    React.PropTypes.bool,
+  ]),
+  newMessage: React.PropTypes.func,
+};
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    newMessage: (message) => dispatch(newMessage(message)),
+  };
+}
+
+const mapStateToProps = createStructuredSelector({
+  messages: makeSelectMessages(),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

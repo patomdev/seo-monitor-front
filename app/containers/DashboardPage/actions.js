@@ -1,44 +1,29 @@
 import {
-  LOAD_DATA,
-  LOAD_DATA_SUCCESS,
-  LOAD_DATA_ERROR,
+  LOAD_MESSAGES,
+  NEW_MESSAGE,
 } from './constants';
 
 /**
  * Load the data, this action starts the request saga
  *
- * @return {object} An action object with a type of LOAD_DATA
+ * @return {object} An action object with a type of LOAD_MESSAGES
  */
-export function loadData() {
+export function loadMessages() {
   return {
-    type: LOAD_DATA,
+    type: LOAD_MESSAGES,
   };
 }
 
 /**
- * Dispatched when the data are loaded by the request saga
+ * Dispatched when new message is received
  *
- * @param  {array} sites The repository data
+ * @param  {object} message The new message
  *
- * @return {object} An action object with a type of LOAD_DATA_SUCCESS passing the repos
+ * @return {object} An action object with a type of NEW_MESSAGE passing the repos
  */
-export function dataLoaded(sites) {
+export function newMessage(message) {
   return {
-    type: LOAD_DATA_SUCCESS,
-    sites,
-  };
-}
-
-/**
- * Dispatched when loading the data fails
- *
- * @param  {object} error The error
- *
- * @return {object} An action object with a type of LOAD_DATA_ERROR passing the error
- */
-export function dataLoadingError(error) {
-  return {
-    type: LOAD_DATA_ERROR,
-    error,
+    type: NEW_MESSAGE,
+    message,
   };
 }

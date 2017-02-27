@@ -10,4 +10,8 @@ export default defineMessages({
     id: 'app.components.DashboardPage.header',
     defaultMessage: 'Dashboard',
   },
+  pusherHeader: {
+    id: 'app.components.DashboardPage.pusherHeader',
+    defaultMessage: 'Pusher messages',
+  },
 });

@@ -23,7 +23,7 @@ export class SitesPage extends React.PureComponent {
 
   renderSites(sites) {
     return sites
-      ? sites.map((site, index) => <div key={index}>{site.title}</div>)
+      ? sites.map((site) => <div key={site.id}>{site.title}</div>)
       : null;
   }
 
