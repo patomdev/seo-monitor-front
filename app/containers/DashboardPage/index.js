@@ -19,7 +19,8 @@ import messages from './messages';
 import { makeSelectMessages } from './selectors';
 import { newMessage } from './actions';
 
-export class DashboardPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class DashboardPage extends React.PureComponent {
+  // eslint-disable-line react/prefer-stateless-function
 
   componentWillMount() {
     this.pusher = new Pusher('5ba303ce6d9a3bb318ab');
@@ -27,14 +28,22 @@ export class DashboardPage extends React.PureComponent { // eslint-disable-line 
   }
 
   componentDidMount() {
-    this.chatRoom.bind('new_url', (message) => {
-      this.props.newMessage(message);
-    }, this);
+    this.chatRoom.bind(
+      'new_url',
+      (message) => {
+        this.props.newMessage(message);
+      },
+      this
+    );
   }
 
   renderPushMessages(pushMessage) {
-    return pushMessage
-      ? <div key={pushMessage.id}>{pushMessage.crawled} <a href={pushMessage.url}>{pushMessage.url}</a></div>
+    return pushMessage.size
+      ? pushMessage.map((message) => (
+        <div key={message.id}>
+          {message.crawled} <a href={message.url}>{message.url}</a>
+        </div>
+        ))
       : null;
   }
 
@@ -48,16 +57,12 @@ export class DashboardPage extends React.PureComponent { // eslint-disable-line 
         {this.renderPushMessages(this.props.messages)}
         <LineChart />
       </div>
-
     );
   }
 }
 
 DashboardPage.propTypes = {
-  messages: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.bool,
-  ]),
+  messages: React.PropTypes.object,
   newMessage: React.PropTypes.func,
 };
 

@@ -18,14 +18,14 @@ import {
 
 // The initial state of the App
 const initialState = fromJS({
-  messages: false,
+  messages: [],
 });
 
 function dashboardReducer(state = initialState, action) {
   switch (action.type) {
     case NEW_MESSAGE:
       return state
-        .set('messages', action.message);
+        .set('messages', state.get('messages').unshift(action.message));
     default:
       return state;
   }
