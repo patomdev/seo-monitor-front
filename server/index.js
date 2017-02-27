@@ -11,6 +11,7 @@ const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel
   : false;
 const resolve = require('path').resolve;
 const proxy = require('express-http-proxy');
+const urlParser = require('url');
 const app = express();
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
@@ -19,7 +20,7 @@ const pxport = process.env.npm_config_pxport || '5000';
 app.use(
   '/api/v1',
   proxy(`${pxhost}:${pxport}/`, {
-    forwardPath: (req) => `/v1${require('url').parse(req.url).path}`,
+    forwardPath: (req) => `/v1${urlParser.parse(req.url).path}`,
   })
 );
 

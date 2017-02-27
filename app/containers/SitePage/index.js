@@ -12,10 +12,7 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import messages from './messages';
 import { loadSite } from './actions';
-import {
-  makeSelectSite,
-  makeSelectLoading,
-} from './selectors';
+import { makeSelectSite, makeSelectLoading } from './selectors';
 
 export class SitePage extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
@@ -57,6 +54,7 @@ export class SitePage extends React.PureComponent {
 }
 
 SitePage.propTypes = {
+  params: React.PropTypes.object,
   loading: React.PropTypes.bool,
   site: React.PropTypes.oneOfType([
     React.PropTypes.object,
