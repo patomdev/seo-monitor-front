@@ -8,41 +8,37 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import { createStructuredSelector } from 'reselect';
 import { FormattedMessage } from 'react-intl';
+import { createStructuredSelector } from 'reselect';
 import messages from './messages';
-import { loadSites } from './actions';
-import { makeSelectSites, makeSelectLoading } from './selectors';
+import { loadSite } from './actions';
+import {
+  makeSelectSite,
+  makeSelectLoading,
+} from './selectors';
 
-export class SitesPage extends React.PureComponent {
+export class SitePage extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
 
   componentDidMount() {
-    this.props.initSites();
+    this.props.initSite(this.props.params.id);
   }
 
-  renderSites(sites) {
-    return sites
-      ? sites.map((site) => (
-        <div key={site.id}>
-          <Link to={`/sites/${site.id}`}>{site.title}</Link>
-        </div>
-        ))
-      : null;
+  renderSite(site) {
+    return site ? <div>{site.title}</div> : null;
   }
 
   render() {
-    const { loading, sites } = this.props;
-    const sitesListProps = {
+    const { loading, site } = this.props;
+    const siteListProps = {
       loading,
-      sites,
+      site,
     };
 
     return (
       <div>
         <div>
-          {sitesListProps.loading}
+          {siteListProps.loading}
         </div>
         <div />
         <Helmet
@@ -53,31 +49,31 @@ export class SitesPage extends React.PureComponent {
           <FormattedMessage {...messages.header} />
         </h2>
         <div>
-          {this.renderSites(sitesListProps.sites)}
+          {this.renderSite(siteListProps.site)}
         </div>
       </div>
     );
   }
 }
 
-SitesPage.propTypes = {
+SitePage.propTypes = {
   loading: React.PropTypes.bool,
-  sites: React.PropTypes.oneOfType([
-    React.PropTypes.array,
+  site: React.PropTypes.oneOfType([
+    React.PropTypes.object,
     React.PropTypes.bool,
   ]),
-  initSites: React.PropTypes.func,
+  initSite: React.PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    initSites: () => dispatch(loadSites()),
+    initSite: (id) => dispatch(loadSite(id)),
   };
 }
 
 const mapStateToProps = createStructuredSelector({
-  sites: makeSelectSites(),
+  site: makeSelectSite(),
   loading: makeSelectLoading(),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SitesPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SitePage);

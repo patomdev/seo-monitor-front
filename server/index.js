@@ -6,7 +6,9 @@ const logger = require('./logger');
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
-const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
+const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel
+  ? require('ngrok')
+  : false;
 const resolve = require('path').resolve;
 const proxy = require('express-http-proxy');
 const app = express();
@@ -14,7 +16,12 @@ const app = express();
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 const pxhost = process.env.npm_config_pxhost || '127.0.0.1';
 const pxport = process.env.npm_config_pxport || '5000';
-app.use('/api/v1', proxy(`${pxhost}:${pxport}/`));
+app.use(
+  '/api/v1',
+  proxy(`${pxhost}:${pxport}/`, {
+    forwardPath: (req) => `/v1${require('url').parse(req.url).path}`,
+  })
+);
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
