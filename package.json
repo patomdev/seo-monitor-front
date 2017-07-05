@@ -279,7 +279,7 @@
     "imports-loader": "0.7.1",
     "jest-cli": "19.0.2",
     "lint-staged": "3.3.2",
-    "ngrok": "2.2.6",
+    "ngrok": "2.2.12",
     "node-plop": "0.5.5",
     "null-loader": "0.1.1",
     "offline-plugin": "4.6.2",
