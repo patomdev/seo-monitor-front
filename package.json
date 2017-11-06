@@ -244,7 +244,7 @@
   "devDependencies": {
     "babel-cli": "6.23.0",
     "babel-core": "6.24.0",
-    "babel-eslint": "7.1.1",
+    "babel-eslint": "8.0.2",
     "babel-loader": "6.4.1",
     "babel-plugin-dynamic-import-node": "1.0.1",
     "babel-plugin-react-intl": "2.3.1",
