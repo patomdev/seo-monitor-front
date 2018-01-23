@@ -289,7 +289,7 @@
     "react-addons-test-utils": "15.4.2",
     "rimraf": "2.6.1",
     "shelljs": "0.7.7",
-    "sinon": "2.0.0-pre.6",
+    "sinon": "4.2.1",
     "style-loader": "0.14.0",
     "url-loader": "0.5.8",
     "webpack": "2.3.0",
