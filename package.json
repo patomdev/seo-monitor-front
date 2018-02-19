@@ -218,7 +218,7 @@
     "fontfaceobserver": "2.0.9",
     "immutable": "4.0.0-rc.1",
     "intl": "1.2.5",
-    "invariant": "2.2.2",
+    "invariant": "2.2.3",
     "ip": "1.1.5",
     "lodash": "4.17.4",
     "material-ui": "^0.17.0",
